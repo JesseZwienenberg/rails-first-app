@@ -1,0 +1,22 @@
+# Rails temporary files
+/tmp
+/log/*
+!/log/.keep
+/storage/*
+!/storage/.keep
+
+# Database
+/db/*.sqlite3
+/db/*.sqlite3-*
+
+# Secrets
+/config/master.key
+/config/credentials.yml.enc
+
+# Docker volumes
+postgres_data/
+node_modules/
+
+# IDE files
+.idea/
+.vscode/

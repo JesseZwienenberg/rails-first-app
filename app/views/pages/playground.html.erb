@@ -1,0 +1,115 @@
+<h1>Rails Playground</h1>
+<p>Learning Ruby on Rails basics!</p>
+
+<hr>
+
+<h2>1. Simple Variables</h2>
+<p>Current time: <%= @current_time %></p>
+<p>Random number: <%= @random_number %></p>
+<p>Message: <%= @greeting %></p>
+
+<hr>
+
+<h2>2. Working with Arrays (Lists)</h2>
+<p>All colors: <%= @colors %></p>
+<p>First color: <%= @colors.first %></p>
+<p>Last color: <%= @colors.last %></p>
+<p>Number of colors: <%= @colors.count %></p>
+
+<h3>Loop through array:</h3>
+<ul>
+  <% @colors.each do |color| %>
+    <li style="color: <%= color %>"><%= color.capitalize %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>3. Working with Hashes (Objects)</h2>
+<p>Full hash: <%= @person %></p>
+<p>Name: <%= @person[:name] %></p>
+<p>Age: <%= @person[:age] %></p>
+<p>City: <%= @person[:city] %></p>
+
+<hr>
+
+<h2>4. Complex Data (Array of Hashes)</h2>
+<table border="1" style="border-collapse: collapse; margin: 10px 0;">
+  <thead>
+    <tr>
+      <th style="padding: 10px;">Title</th>
+      <th style="padding: 10px;">Author</th>
+      <th style="padding: 10px;">Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td style="padding: 10px;"><%= book[:title] %></td>
+        <td style="padding: 10px;"><%= book[:author] %></td>
+        <td style="padding: 10px;"><%= book[:year] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>5. Conditionals (If/Else)</h2>
+<% if @random_number > 50 %>
+  <p style="color: green;">The random number <%= @random_number %> is greater than 50!</p>
+<% else %>
+  <p style="color: red;">The random number <%= @random_number %> is 50 or less!</p>
+<% end %>
+
+<% if @current_time.hour < 12 %>
+  <p>Good morning! ☀️</p>
+<% elsif @current_time.hour < 18 %>
+  <p>Good afternoon! 🌤️</p>
+<% else %>
+  <p>Good evening! 🌙</p>
+<% end %>
+
+<hr>
+
+<h2>6. Ruby Methods in Views</h2>
+<p>Uppercase greeting: <%= @greeting.upcase %></p>
+<p>Greeting length: <%= @greeting.length %> characters</p>
+<p>Does greeting include "Hello"? <%= @greeting.include?("Hello") %></p>
+<p>Reversed: <%= @greeting.reverse %></p>
+
+<hr>
+
+<h2>7. Links in Rails</h2>
+<p>
+  <%= link_to "Go to Home", root_path %> |
+  <%= link_to "Go to About", pages_about_path %> |
+  <%= link_to "External Link to Google", "https://google.com", target: "_blank" %>
+</p>
+
+<hr>
+
+<h2>8. Forms (Simple Example)</h2>
+<%= form_with url: pages_playground_path, method: :get, local: true do |form| %>
+  <p>
+    <%= form.label :name, "Enter your name:" %>
+    <%= form.text_field :name, value: params[:name] %>
+    <%= form.submit "Say Hello" %>
+  </p>
+<% end %>
+
+<% if params[:name].present? %>
+  <p style="background: lightblue; padding: 10px;">
+    Hello, <%= params[:name] %>! 👋
+  </p>
+<% end %>
+
+<hr>
+
+<h2>9. URL Parameters</h2>
+<p>Current URL parameters: <%= params.inspect %></p>
+<p>Try visiting: <%= link_to "This page with parameters", pages_playground_path(test: "hello", number: 42) %></p>
+
+<hr>
+
+<p><%= link_to "← Back to Home", root_path %></p>
